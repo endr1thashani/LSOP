@@ -5,5 +5,13 @@
 
 
 .main__container{
-    @apply w-full h-screen flex items-center justify-center bg-[]
+    @apply w-full h-screen flex items-center justify-center bg-gray-400
+}
+
+.form__wrapper{
+    @apply flex flex-col justify-center items-center h-[440px] w-[320px] p-[10px] md:p-0 md:w-[600px] bg-white rounded-md
+}
+
+.sidebar__icon-wrapper{
+    @apply flex w-full h-[80px] items-center justify-start px-[15px] hover:bg-gray-700
 }
