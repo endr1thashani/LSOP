@@ -17,7 +17,7 @@ const ModalAdd = ({closeModal}) => {
     e.preventDefault();
 
     axios
-      .post('http://localhost:5000/applicable-wages', {
+      .post('http://localhost:5000/employer-mpf', {
         staffNr,
         gender,
         year,
@@ -27,7 +27,7 @@ const ModalAdd = ({closeModal}) => {
         year26
       })
       .then((res) => {
-        alert('Applicable wages created');
+        alert('Probability created');
         closeModal();
       })
       .catch((err) => {
@@ -37,7 +37,7 @@ const ModalAdd = ({closeModal}) => {
 
   useEffect(() => {
     axios.get('http://localhost:5000/employee-information').then((response) => {
-      setData(response.data); // Assuming the response is an array
+      setData(response.data); 
     });
   },[]);
 
@@ -56,7 +56,7 @@ const ModalAdd = ({closeModal}) => {
     }
   };
   return (
-    <div className='absolute flex w-full max-w-[350px] md:max-w-[600px] p-[10px] md:ml-[20%] mt-[10%] h-[500px] bg-gray-200 rounded-[7px] '>
+    <div className='absolute flex w-full max-w-[350px] md:max-w-[600px] p-[10px] md:ml-[20%] mt-[10%] h-[650px] bg-gray-200 rounded-[7px] '>
       <div className='flex flex-col md:p-[10px] items-center'>
 
         <div className='w-full items-center justify-end mt-[5px]'>
@@ -66,8 +66,8 @@ const ModalAdd = ({closeModal}) => {
         </div>
 
 
-          <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center w-full ml-[15px] md:ml-[80%]'>
-            <h1>Add Applicable Wages</h1>
+          <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center w-full ml-[15px]'>
+            <h1>Add Probabilities of Involuntary Termination, Deceased and/or Retired</h1>
             <div className='w-72 mt-[20px]'>
             <label htmlFor='employeeSelect' className='block text-sm font-medium text-gray-700'>
               Select Employee:

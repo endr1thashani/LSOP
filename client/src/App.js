@@ -7,7 +7,7 @@ import Probabilities from './components/DashboardComponents/dashboardPages/Proba
 import ProbabilitiesStaying from './components/DashboardComponents/dashboardPages/ProbabilitiesStaying'
 import EmployersMPF from './components/DashboardComponents/dashboardPages/EmployersMPF'
 import ErrorPage from './components/ErrorPage/ErrorPage';
-import LongservicePaymnt from './components/DashboardComponents/dashboardPages/LongservicePaymnt';
+import LongservicePayment from './components/DashboardComponents/dashboardPages/LongservicePayment';
 import ProjectedLife from './components/DashboardComponents/dashboardPages/ProjectedLife';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
         <Route path='/dashboard/probabilities' element={<Probabilities/>} />
         <Route path='/dashboard/probabilities-staying' element={<ProbabilitiesStaying/>} />
         <Route path='/dashboard/employers-mpf' element={<EmployersMPF/>} />
-        <Route path='/dashboard/longservice-payment' element={<LongservicePaymnt/>} />
+        <Route path='/dashboard/longservice-payment' element={<LongservicePayment/>} />
         <Route path='/dashboard/projected-life' element={<ProjectedLife/>} />
         <Route path='*' element={<ErrorPage/>} />
       </Routes>

@@ -41,7 +41,7 @@ const SideBar = () => {
                 </Link>
                 <Link className='sidebar__icon-wrapper' to="/dashboard/probabilities">
                     <FaPercentage size={25} className='mr-[15px]'/>
-                    Probabilities
+                    Probabilities (IT , D, R)
                 </Link>
                 <Link className='sidebar__icon-wrapper' to="/dashboard/probabilities-staying">
                     <FaPercentage size={25} className='mr-[15px]'/>
@@ -62,7 +62,7 @@ const SideBar = () => {
             </div>
         </div>
 
-        <div onClick={handleSidebar} className='block h-screen md:hidden cursor-pointer min-w-[100px]'>
+        <div onClick={handleSidebar} className='block h-screen md:hidden cursor-pointer min-w-[60px]'>
                           {sidebar ? <AiOutlineClose className='mx-auto mt-[10px]' size={20} /> : <AiOutlineMenu className='mx-auto mt-[10px]' size={20} />}
             <div    
             className={

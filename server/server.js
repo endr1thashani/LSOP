@@ -6,7 +6,11 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/user')
 const Employee = require('./models/employee')
 const Applicable = require('./models/applicablewages')
-const Projected = require('./models/projected')
+const Projected = require('./models/projected');
+const Staying = require('./models/probablilitystaying');
+const Probability = require('./models/probabilities');
+const Employermpf = require('./models/employermpf');
+const LongPayment = require('./models/longspayment');
 const app = express()
 
 app.use(express.json())
@@ -88,10 +92,10 @@ app.delete('/employee-information/:staffNr', async (req, res) => {
 
 
 app.post('/applicable-wages', (req, res) => {
-  const { staffNr, gender, year } = req.body;
+  const { staffNr, gender, year , year23 ,year24, year25, year26 } = req.body;
 
 
-  Applicable.create({ staffNr, gender, year })
+  Applicable.create({ staffNr, gender, year, year23 ,year24, year25, year26 })
     .then(applicable => res.json({ status: "OK" }))
     .catch(err => {
       console.error(err);
@@ -126,6 +130,176 @@ app.delete('/applicable-wages/:staffNr', async (req, res) => {
       res.status(500).json({ message: 'Server Error' });
     }
 });  
+
+app.post('/probability', (req, res) => {
+  const { staffNr, gender, year , year23 ,year24, year25, year26 } = req.body;
+
+
+  Probability.create({ staffNr, gender, year, year23 ,year24, year25, year26 })
+    .then(probability => res.json({ status: "OK" }))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
+
+app.get('/probability', async (req, res) => {
+    try {
+      const data = await Staying.find(); 
+      res.json(data);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  });
+
+app.delete('/probability/:staffNr', async (req, res) => {
+    const staffNr = req.params.staffNr;
+  
+    try {
+      const deletedProb = await Probability.findOneAndDelete({ staffNr });
+  
+      if (!deletedProb) {
+        return res.status(404).json({ message: 'Not found' });
+      }
+  
+      res.json({ message: 'Deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+}); 
+
+app.post('/probability-staying', (req, res) => {
+  const { staffNr, gender, year , year23 ,year24, year25, year26 } = req.body;
+
+
+  Probability.create({ staffNr, gender, year, year23 ,year24, year25, year26 })
+    .then(probability => res.json({ status: "OK" }))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
+
+app.get('/probability-staying', async (req, res) => {
+    try {
+      const data = await Staying.find(); 
+      res.json(data);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  });
+
+app.delete('/probability-staying/:staffNr', async (req, res) => {
+    const staffNr = req.params.staffNr;
+  
+    try {
+      const deletedProb = await Staying.findOneAndDelete({ staffNr });
+  
+      if (!deletedProb) {
+        return res.status(404).json({ message: 'Not found' });
+      }
+  
+      res.json({ message: 'Deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+});  
+
+
+app.post('/employer-mpf', (req, res) => {
+  const { staffNr, gender, year , year23 ,year24, year25, year26 } = req.body;
+
+
+  Employermpf.create({ staffNr, gender, year, year23 ,year24, year25, year26 })
+    .then(employermpf => res.json({ status: "OK" }))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
+
+app.get('/employer-mpf', async (req, res) => {
+    try {
+      const data = await Employermpf.find(); 
+      res.json(data);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  });
+
+app.delete('/employer-mpf/:staffNr', async (req, res) => {
+    const staffNr = req.params.staffNr;
+  
+    try {
+      const deletedProb = await Employermpf.findOneAndDelete({ staffNr });
+  
+      if (!deletedProb) {
+        return res.status(404).json({ message: 'Not found' });
+      }
+  
+      res.json({ message: 'Deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+}); 
+
+
+
+app.post('/longservice-payment', (req, res) => {
+  const { staffNr, gender,sumofLsp,lspOff, year , year23 ,year24, year25, year26 } = req.body;
+
+
+  LongPayment.create({ staffNr, gender,sumofLsp,lspOff, year, year23 ,year24, year25, year26 })
+    .then(employermpf => res.json({ status: "OK" }))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
+
+app.get('/longservice-payment', async (req, res) => {
+    try {
+      const data = await LongPayment.find(); 
+      res.json(data);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  });
+
+app.delete('/longservice-payment/:staffNr', async (req, res) => {
+    const staffNr = req.params.staffNr;
+  
+    try {
+      const deletedProb = await LongPayment.findOneAndDelete({ staffNr });
+  
+      if (!deletedProb) {
+        return res.status(404).json({ message: 'Not found' });
+      }
+  
+      res.json({ message: 'Deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+}); 
+
+
+
+
+
+
+
 
 
 app.post('/projected-life' , (req, res) => {

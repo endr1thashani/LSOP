@@ -2,7 +2,7 @@ import React , { useState , useEffect } from 'react'
 import axios from 'axios'
 import { AiTwotoneEdit } from 'react-icons/ai'
 import { MdDelete } from 'react-icons/md'
-import ModalAdd from '../../Modals/ProbabilityStaying/ModalAdd'
+import ModalAdd from '../../Modals/LongPayment/ModalAdd'
 import SideBar from '../SideBar/SideBar'
 
 
@@ -23,12 +23,12 @@ const yearsArr = [
     title : '2027'
   },
 ]
-const ProbabilitiesStaying = () => {
+const LongservicePayment = () => {
   const [ modal , setModal ] = useState(false)
   const [ data , setData ] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:5000/probability-staying')
+    axios.get('http://localhost:5000/longservice-payment')
     .then((response) => {
       setData(response.data)
     }).catch((err) =>{
@@ -38,7 +38,7 @@ const ProbabilitiesStaying = () => {
 
   const handleDelete = async (staffNr) => {
     try {
-      axios.delete(`http://localhost:5000/probability-staying/${staffNr}`)
+      axios.delete(`http://localhost:5000/longservice-payment/${staffNr}`)
       alert("Deleted")
     } catch (error) {
       console.log(error)
@@ -49,7 +49,7 @@ const ProbabilitiesStaying = () => {
       <SideBar />
       <div className='relative w-full flex flex-col px-[20px] bg-gray-100'>
             {modal && <ModalAdd closeModal={setModal}/>}
-      <h1 className='font-bold text-xl md:text-3xl mt-[10px]'>Probability Staying</h1>
+      <h1 className='font-bold text-xl md:text-3xl mt-[10px]'>Long Service Payment</h1>
       <div className='my-[100px]'>
         <button className='bg-green-500 px-[20px] py-[7px] rounded-sm font-bold hover:bg-green-400' onClick={() => setModal(true)}>Add</button>
       </div>
@@ -65,6 +65,8 @@ const ProbabilitiesStaying = () => {
                   <tr>
                     <th scope="col" className="px-6 py-4">Staff No.</th>
                     <th scope="col" className="px-6 py-4">Gender</th>
+                    <th scope="col" className="px-6 py-4">Sum of LSP</th>
+                    <th scope="col" className="px-6 py-4">Pre-transition LSP before mpf offset</th>
                     {
                       yearsArr.map((years , index) => (
                         <th scope="col" key={index} className="px-6 py-4">{years.title}</th>
@@ -78,6 +80,8 @@ const ProbabilitiesStaying = () => {
                       <tr className="border-b dark:border-neutral-500" key={index}>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.staffNr}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.gender}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.sumofLsp}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.lspOff}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year23}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year24}</td>
@@ -102,4 +106,4 @@ const ProbabilitiesStaying = () => {
   )
 }
 
-export default ProbabilitiesStaying
+export default LongservicePayment

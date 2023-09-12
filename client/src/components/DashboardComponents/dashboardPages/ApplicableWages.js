@@ -5,6 +5,24 @@ import { MdDelete } from 'react-icons/md'
 import ModalAdd from '../../Modals/ApplicableWages/ModalAdd'
 import SideBar from '../SideBar/SideBar'
 
+
+const yearsArr = [
+  {
+    title : '2023'
+  },
+  {
+    title : '2024'
+  },
+  {
+    title : '2025'
+  },
+  {
+    title : '2026'
+  },
+  {
+    title : '2027'
+  },
+]
 const ApplicableWages = () => {
   const [ modal , setModal ] = useState(false)
   const [ data , setData ] = useState([])
@@ -47,7 +65,11 @@ const ApplicableWages = () => {
                   <tr>
                     <th scope="col" className="px-6 py-4">Staff No.</th>
                     <th scope="col" className="px-6 py-4">Gender</th>
-                    <th scope="col" className="px-6 py-4">2023</th>
+                    {
+                      yearsArr.map((years , index) => (
+                        <th scope="col" key={index} className="px-6 py-4">{years.title}</th>
+                      ))
+                    }
                   </tr>
                 </thead>
                 <tbody>
@@ -57,6 +79,10 @@ const ApplicableWages = () => {
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.staffNr}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.gender}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year23}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year24}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year25}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year26}</td>
                       <td className="whitespace-nowrap px-6 py-4">
                       <button className='text-green-800'><AiTwotoneEdit size={20}/></button>
                       <button className='text-red-500 ml-[5px]'><MdDelete size={20} onClick={() => handleDelete(item.staffNr)}/></button></td>

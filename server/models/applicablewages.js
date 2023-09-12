@@ -12,7 +12,24 @@ const applicableSchema = new mongoose.Schema({
     year : {
         type : String,
         required : true,
-    }
+    },
+    year23 : {
+        type : Number,
+        default : 0
+    },
+    year24 : {
+        type : Number,
+        default : 0
+    },
+    year25 : {
+        type : Number,
+        default : 0
+    },
+    year26 : {
+        type : Number,
+        default : 0
+    },
+
 })
 
 

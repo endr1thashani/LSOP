@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const stayingSchema = new mongoose.Schema({
+const employermpfSchema = new mongoose.Schema({
     staffNr : {
         type : String,
         required : true,
@@ -32,5 +32,5 @@ const stayingSchema = new mongoose.Schema({
 })
 
 
-const Staying = mongoose.model("staying" , stayingSchema)
-module.exports = Staying
+const Employermpf = mongoose.model("employermpf" , employermpfSchema)
+module.exports = Employermpf

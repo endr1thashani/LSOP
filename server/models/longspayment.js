@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const stayingSchema = new mongoose.Schema({
+const longpaymentSchema = new mongoose.Schema({
     staffNr : {
         type : String,
         required : true,
@@ -8,6 +8,14 @@ const stayingSchema = new mongoose.Schema({
     gender : {
         type : String,
         required : true,
+    },
+    sumofLsp : {
+        type : Number,
+        required : true
+    },
+    lspOff : {
+        type : Number,
+        required : true
     },
     year : {
         type : String,
@@ -32,5 +40,5 @@ const stayingSchema = new mongoose.Schema({
 })
 
 
-const Staying = mongoose.model("staying" , stayingSchema)
-module.exports = Staying
+const LongPayment = mongoose.model("longservicepayment" , longpaymentSchema)
+module.exports = LongPayment
