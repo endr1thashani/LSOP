@@ -22,19 +22,19 @@ const longpaymentSchema = new mongoose.Schema({
         required : true,
     },
     year23 : {
-        type : Number,
+        type : String,
         default : 0
     },
     year24 : {
-        type : Number,
+        type : String,
         default : 0
     },
     year25 : {
-        type : Number,
+        type : String,
         default : 0
     },
     year26 : {
-        type : Number,
+        type : String,
         default : 0
     },
 })

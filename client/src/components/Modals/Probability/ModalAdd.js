@@ -53,6 +53,10 @@ const ModalAdd = ({closeModal}) => {
       setSelectedEmployee('');
       setStaffNr('');
       setGender('');
+      setYear23(0);
+      setYear24(0);
+      setYear25(0);
+      setYear26(0);
     }
   };
   return (

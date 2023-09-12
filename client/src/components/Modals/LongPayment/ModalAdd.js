@@ -60,7 +60,7 @@ const ModalAdd = ({closeModal}) => {
     }
   };
   return (
-    <div className='absolute flex w-full max-w-[350px] md:max-w-[600px] p-[10px] md:ml-[20%] mt-[10%] h-[650px] bg-gray-200 rounded-[7px] '>
+    <div className='absolute flex w-full max-w-[350px] md:max-w-[600px] p-[10px] md:ml-[20%] mt-[2%] h-[650px] bg-gray-200 rounded-[7px] '>
       <div className='flex flex-col md:p-[10px] items-center'>
 
         <div className='w-full items-center justify-end mt-[5px]'>
@@ -70,7 +70,7 @@ const ModalAdd = ({closeModal}) => {
         </div>
 
 
-          <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center w-full ml-[15px]'>
+          <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center w-full md:ml-[80%]'>
             <h1>Add Long Service Payment</h1>
             <div className='w-72 mt-[20px]'>
             <label htmlFor='employeeSelect' className='block text-sm font-medium text-gray-700'>

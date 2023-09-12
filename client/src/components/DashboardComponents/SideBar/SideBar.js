@@ -39,11 +39,11 @@ const SideBar = () => {
                     <FaMoneyBillAlt size={25} className='mr-[15px]'/>
                     Applicable Wages
                 </Link>
-                <Link className='sidebar__icon-wrapper' to="/dashboard/probabilities">
+                <Link className='sidebar__icon-wrapper' to="/dashboard/probability">
                     <FaPercentage size={25} className='mr-[15px]'/>
                     Probabilities (IT , D, R)
                 </Link>
-                <Link className='sidebar__icon-wrapper' to="/dashboard/probabilities-staying">
+                <Link className='sidebar__icon-wrapper' to="/dashboard/probability-staying">
                     <FaPercentage size={25} className='mr-[15px]'/>
                     Probabilities Staying
                 </Link>
@@ -89,11 +89,11 @@ const SideBar = () => {
                     <FaMoneyBillAlt size={25} className='mr-[15px]'/>
                     Applicable Wages
                 </Link>
-                <Link className='sidebar__icon-wrapper' to="/dashboard/probabilities">
+                <Link className='sidebar__icon-wrapper' to="/dashboard/probability">
                     <FaPercentage size={25} className='mr-[15px]'/>
                     Probabilities
                 </Link>
-                <Link className='sidebar__icon-wrapper' to="/dashboard/probabilities-staying">
+                <Link className='sidebar__icon-wrapper' to="/dashboard/probability-staying">
                     <FaPercentage size={25} className='mr-[15px]'/>
                     Probabilities Staying
                 </Link>

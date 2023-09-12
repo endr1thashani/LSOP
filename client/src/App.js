@@ -19,8 +19,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<PrivateRoute />} />
         <Route path='/dashboard/applicable-wages' element={<ApplicableWages/>} />
-        <Route path='/dashboard/probabilities' element={<Probabilities/>} />
-        <Route path='/dashboard/probabilities-staying' element={<ProbabilitiesStaying/>} />
+        <Route path='/dashboard/probability' element={<Probabilities/>} />
+        <Route path='/dashboard/probability-staying' element={<ProbabilitiesStaying/>} />
         <Route path='/dashboard/employers-mpf' element={<EmployersMPF/>} />
         <Route path='/dashboard/longservice-payment' element={<LongservicePayment/>} />
         <Route path='/dashboard/projected-life' element={<ProjectedLife/>} />

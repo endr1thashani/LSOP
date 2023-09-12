@@ -146,7 +146,7 @@ app.post('/probability', (req, res) => {
 
 app.get('/probability', async (req, res) => {
     try {
-      const data = await Staying.find(); 
+      const data = await Probability.find(); 
       res.json(data);
     } catch (error) {
       console.error(error);
@@ -175,7 +175,7 @@ app.post('/probability-staying', (req, res) => {
   const { staffNr, gender, year , year23 ,year24, year25, year26 } = req.body;
 
 
-  Probability.create({ staffNr, gender, year, year23 ,year24, year25, year26 })
+  Staying.create({ staffNr, gender, year, year23 ,year24, year25, year26 })
     .then(probability => res.json({ status: "OK" }))
     .catch(err => {
       console.error(err);

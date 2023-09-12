@@ -74,12 +74,12 @@ const Probabilities = () => {
                 </thead>
                 <tbody>
                   {
-                    data.map((item , index) => (
-                      <tr className="border-b dark:border-neutral-500" key={index}>
+                    data.map((item) => (
+                      <tr className="border-b dark:border-neutral-500" key={item._id}>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.staffNr}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.gender}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year}</td>
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year23}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year23 !== 0 ? item.year23 : 'N/A'}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year24}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year25}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.year26}</td>
