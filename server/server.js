@@ -90,7 +90,6 @@ app.delete('/employee-information/:staffNr', async (req, res) => {
 app.post('/applicable-wages', (req, res) => {
   const { staffNr, gender, year } = req.body;
 
-  console.log('Received data:', { staffNr, gender, year });
 
   Applicable.create({ staffNr, gender, year })
     .then(applicable => res.json({ status: "OK" }))
@@ -130,12 +129,11 @@ app.delete('/applicable-wages/:staffNr', async (req, res) => {
 
 
 app.post('/projected-life' , (req, res) => {
-  const { gender,year, age, probofDying, numofSuv,numofDeaths, numofP, totalofP , expecofLife } = req.body;
-  console.log(req.body); 
-  Projected.create({ gender,year, age, probofDying, numofSuv,numofDeaths, numofP, totalofP , expecofLife })
+  const { gender,year,age,probofDying,numofSuv,numofDeaths,numofP,totalofP,expecofLife } = req.body;
+  console.log('Received data:', { gender,year,age,probofDying,numofSuv,numofDeaths,numofP,totalofP,expecofLife });
+  Projected.create({ gender,year,age,probofDying,numofSuv,numofDeaths,numofP,totalofP,expecofLife })
       .then(projected => res.json({ status: "OK" }))
       .catch(err => {
-          console.error(err);
           res.status(500).json({ error: "Internal Server Error" });
       });
 })
@@ -145,7 +143,6 @@ app.get('/projected-life', async (req, res) => {
     const data = await Projected.find(); 
     res.json(data);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: 'Server Error' });
   }
 });

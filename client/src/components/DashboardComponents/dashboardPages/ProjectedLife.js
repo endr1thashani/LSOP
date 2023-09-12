@@ -9,13 +9,22 @@ const ProjectedLife = () => {
   const [ data , setData ] = useState([])
 
   useEffect(() => {
-    axios.post('http://localhost:5000/projected-life')
+    axios.get('http://localhost:5000/projected-life')
     .then((response) => {
       setData(response.data)
     }).catch((err) =>{
       console.log(err)
     }) 
-  })
+  },[])
+
+  const handleDelete = async (age) => {
+    try {
+      await axios.delete(`http://localhost:5000/projected-life/${age}`)
+      alert("Delete successfuly")
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className='w-full flex'>
       <SideBar />
@@ -57,8 +66,8 @@ const ProjectedLife = () => {
                 </thead>
                 <tbody>
                   {
-                    data.map((item) => (
-                      <tr className="border-b dark:border-neutral-500">
+                    data.map((item , index) => (
+                      <tr className="border-b dark:border-neutral-500" key={index}>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.age}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.probofDying}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.numofSuv}</td>
@@ -67,7 +76,7 @@ const ProjectedLife = () => {
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.expecofLife}</td>
                       <td className="whitespace-nowrap px-6 py-4">
                       <button className='text-green-800'><AiTwotoneEdit size={20}/></button>
-                      <button className='text-red-500 ml-[5px]'><MdDelete size={20}/></button></td>
+                      <button className='text-red-500 ml-[5px]'><MdDelete size={20} onClick={() => handleDelete(item.age)}/></button></td>
                       </tr>
                     ))
                   }

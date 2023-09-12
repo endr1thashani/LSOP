@@ -2,13 +2,11 @@ const mongoose = require('mongoose')
 
 const applicableSchema = new mongoose.Schema({
     staffNr : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'Employee',
+        type : String,
         required : true,
     },
     gender : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'Employee',
+        type : String,
         required : true,
     },
     year : {

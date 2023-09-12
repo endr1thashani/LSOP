@@ -17,18 +17,10 @@ const ModalAdd = ({closeModal}) => {
     e.preventDefault()
 
     axios.post('http://localhost:5000/projected-life', {
-        gender,
-        year,
-        age,
-        probofDying,
-        numofDeaths,
-        numofSuv,
-        numofP,
-        totalofP, // Make sure totalofP is included
-        expecofLife,
+        gender,year,age,probofDying,numofSuv,numofDeaths,numofP,totalofP,expecofLife
       })
     .then(res => {
-        alert('Porjected Life Created')
+        alert('Projected Life Created')
         closeModal(false)
     }).catch(err => console.log(err))
 }

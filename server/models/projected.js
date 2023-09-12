@@ -39,6 +39,6 @@ const projectedSchema = new mongoose.Schema({
     }
 })
 
-const Projected = mongoose.model("projectedlives" , projectedSchema )
+const Projected = mongoose.model("projected" , projectedSchema )
 
 module.exports = Projected
