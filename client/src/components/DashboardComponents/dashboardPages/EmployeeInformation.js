@@ -60,9 +60,9 @@ const EmployeeInformation = () => {
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.gender}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.dateOfBirth}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.dateOfJoin}</td>
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.averageIncome}</td>
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.employeeBonus}</td>
-                      <td className="whitespace-nowrap px-6 py-4 font-medium">{item.averageMI}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">HK${item.averageIncome}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">HK${item.employeeBonus}</td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">HK${item.averageMI}</td>
                       <td className="whitespace-nowrap px-6 py-4">
                         <button className='text-green-800'><AiTwotoneEdit size={20}/></button>
                         <button className='text-red-500 ml-[5px]'><MdDelete size={20} onClick={() => handleDelete(item.staffNr)}/></button></td>

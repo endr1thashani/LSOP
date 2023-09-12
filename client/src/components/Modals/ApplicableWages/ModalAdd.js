@@ -27,7 +27,7 @@ const ModalAdd = ({closeModal}) => {
         year26
       })
       .then((res) => {
-        alert('Applicable wages created');
+        alert('Probability staying created');
         closeModal();
       })
       .catch((err) => {
@@ -37,7 +37,7 @@ const ModalAdd = ({closeModal}) => {
 
   useEffect(() => {
     axios.get('http://localhost:5000/employee-information').then((response) => {
-      setData(response.data); // Assuming the response is an array
+      setData(response.data); 
     });
   },[]);
 
@@ -56,7 +56,7 @@ const ModalAdd = ({closeModal}) => {
     }
   };
   return (
-    <div className='absolute flex w-full max-w-[350px] md:max-w-[600px] p-[10px] md:ml-[20%] mt-[10%] h-[500px] bg-gray-200 rounded-[7px] '>
+    <div className='absolute flex w-full max-w-[350px] md:max-w-[600px] p-[10px] md:ml-[20%] mt-[10%] h-[600px] bg-gray-200 rounded-[7px] '>
       <div className='flex flex-col md:p-[10px] items-center'>
 
         <div className='w-full items-center justify-end mt-[5px]'>

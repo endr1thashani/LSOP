@@ -28,7 +28,7 @@ const EmployersMPF = () => {
   const [ data , setData ] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:5000/employers-mpf')
+    axios.get('http://localhost:5000/employer-mpf')
     .then((response) => {
       setData(response.data)
     }).catch((err) =>{
@@ -38,7 +38,7 @@ const EmployersMPF = () => {
 
   const handleDelete = async (staffNr) => {
     try {
-      axios.delete(`http://localhost:5000/employers-mpf/${staffNr}`)
+      axios.delete(`http://localhost:5000/employer-mpf/${staffNr}`)
       alert("Deleted")
     } catch (error) {
       console.log(error)

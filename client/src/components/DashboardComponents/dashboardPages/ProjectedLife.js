@@ -7,6 +7,7 @@ import SideBar from '../SideBar/SideBar'
 const ProjectedLife = () => {
   const [ modal , setModal ] = useState(false)
   const [ data , setData ] = useState([])
+  const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
     axios.get('http://localhost:5000/projected-life')
@@ -25,6 +26,10 @@ const ProjectedLife = () => {
       console.log(error)
     }
   }
+
+  const filteredData = data.filter((item) => {
+    return `${item.gender} ${item.year}` === selectedOption;
+  });
   return (
     <div className='w-full flex'>
       <SideBar />
@@ -40,7 +45,18 @@ const ProjectedLife = () => {
         <div className="sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div className="overflow-x-auto md:overflow-x-hidden">
-
+            <select
+                  value={selectedOption}
+                  onChange={(e) => {
+                    setSelectedOption(e.target.value);
+                  }}
+                >
+                  {data.map((item) => (
+                    <option key={`${item.gender} ${item.year}`}>
+                      {item.gender} {item.year}
+                    </option>
+                  ))}
+                </select>
               <table className="min-w-full text-left text-sm font-light">
                 <thead className="border-b font-medium dark:border-neutral-500">
                   <tr>
@@ -66,7 +82,7 @@ const ProjectedLife = () => {
                 </thead>
                 <tbody>
                   {
-                    data.map((item , index) => (
+                    filteredData.map((item, index) => (
                       <tr className="border-b dark:border-neutral-500" key={index}>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.age}</td>
                       <td className="whitespace-nowrap px-6 py-4 font-medium">{item.probofDying}</td>

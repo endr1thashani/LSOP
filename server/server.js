@@ -296,15 +296,9 @@ app.delete('/longservice-payment/:staffNr', async (req, res) => {
 
 
 
-
-
-
-
-
-
 app.post('/projected-life' , (req, res) => {
   const { gender,year,age,probofDying,numofSuv,numofDeaths,numofP,totalofP,expecofLife } = req.body;
-  console.log('Received data:', { gender,year,age,probofDying,numofSuv,numofDeaths,numofP,totalofP,expecofLife });
+
   Projected.create({ gender,year,age,probofDying,numofSuv,numofDeaths,numofP,totalofP,expecofLife })
       .then(projected => res.json({ status: "OK" }))
       .catch(err => {
