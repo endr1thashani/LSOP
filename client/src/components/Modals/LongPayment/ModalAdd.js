@@ -14,6 +14,8 @@ const ModalAdd = ({closeModal}) => {
   const [year24, setYear24] = useState('');
   const [year25, setYear25] = useState('');
   const [year26, setYear26] = useState('');
+  const [error , setError] = useState('')
+  const [success , setSuccess] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,11 +33,11 @@ const ModalAdd = ({closeModal}) => {
         year26
       })
       .then((res) => {
-        alert('Probability created');
+        setSuccess('Probability created');
         closeModal();
       })
       .catch((err) => {
-        console.error(err);
+        setError('Probability already exists');
       });
   };
 
@@ -72,6 +74,8 @@ const ModalAdd = ({closeModal}) => {
 
           <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center w-full md:ml-[80%]'>
             <h1>Add Long Service Payment</h1>
+            <p className='error'>{error}</p>
+            <p className='succ'>{success}</p>
             <div className='w-72 mt-[20px]'>
             <label htmlFor='employeeSelect' className='block text-sm font-medium text-gray-700'>
               Select Employee:

@@ -9,19 +9,22 @@ const ModalAdd = ({closeModal}) => {
   const [dateOfBirth , setdateofBirth] = useState('')
   const [averageMI , setaverageMI] = useState('')
   const [employeeBonus , setemployeeBonus] = useState('')
-
+  const [error , setError] = useState('')
+  const [success , setSuccess] = useState('')
 
   const handleSubmit = (e) => {
 
     e.preventDefault()
     axios.post('http://localhost:5000/employee-information' , {staffNr,gender,averageIncome, dateOfJoin , dateOfBirth ,averageMI,employeeBonus} )
     .then(res => {
-        alert('Employee Created')
-    }).catch(err => console.log(err))
+        setSuccess('Employee Created')
+    }).catch(err => 
+        setError('Employee already exists!')    
+    )
 }
 
   return (
-    <div className='absolute flex w-full max-w-[350px] md:max-w-[600px] p-[10px] md:ml-[20%] mt-[2%] h-[600px] bg-gray-200 rounded-[7px] '>
+    <div className='absolute flex w-full max-w-[350px] md:max-w-[600px] p-[10px] md:ml-[20%] mt-[2%] h-[630px] bg-gray-200 rounded-[7px] '>
       <div className='flex flex-col md:p-[10px] items-center'>
 
         <div className='w-full items-center justify-end mt-[5px]'>
@@ -33,7 +36,8 @@ const ModalAdd = ({closeModal}) => {
 
           <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center w-full ml-[15px] md:ml-[80%]'>
             <h1>Add Employee Information</h1>
-
+            <p className='error'>{error}</p>
+            <p className='succ'>{success}</p>
             <div className="w-72 mt-[20px]">
                 <div className="relative h-10 w-full min-w-[200px]">
                     <input

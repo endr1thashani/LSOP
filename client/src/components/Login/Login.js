@@ -4,7 +4,8 @@ import axios from 'axios'
 const Login = () => {
     const [ email , setEmail ] = useState()
     const [ password , setPassword ] = useState()
-    const navigate = useNavigate(); // Access the history object
+    const [ error , setError] = useState('')
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -18,7 +19,7 @@ const Login = () => {
         localStorage.setItem('token', response.data.token);
         navigate('/dashboard');
       } catch (error) {
-        console.error(error);
+        setError('Email or password is incorrect');
       }
     };
   
@@ -27,7 +28,7 @@ const Login = () => {
         <form onSubmit={handleSubmit} className='form__wrapper'>
 
             <h1 className='mb-[40px] font-semibold text-2xl md:text-3xl'>LOGIN</h1>
-
+            <p className='text-red-500 font-bold text-[12px]'>{error}</p>
             <div className="w-72">
                 <div className="relative h-10 w-full min-w-[200px]">
                     <input

@@ -21,10 +21,23 @@ mongoose.connect("mongodb+srv://diti2001:diti2001@cluster0.xbnr7h0.mongodb.net/L
 
 app.post('/register' , (req, res) => {
     const { name , email , password} = req.body
-        User.create({ name , email , password})
-        .then(user => res.json({status : "OK"}))
-        .catch(err => res.json(err))
-})
+
+    User.findOne({ email })
+    .then(existingRecord => {
+      if (existingRecord) {
+        res.status(400).json({ error: "Record with the same email already exists" });
+      } else {
+        User.create({ name , email , password  })
+      .then(user => res.json({ status: "OK" }))
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+        });
+      }
+    }).catch(err => {
+    res.status(500).json({ error: "Internal Server Error" });
+    });
+});
 
 
 
@@ -52,15 +65,23 @@ app.post('/login', async (req, res) => {
 
 app.post('/employee-information' , (req, res) => {
     const { staffNr,gender, averageIncome, dateOfJoin, dateOfBirth, averageMI, employeeBonus } = req.body;
-    console.log(req.body); 
-    Employee.create({ staffNr,gender, averageIncome, dateOfJoin, dateOfBirth, averageMI, employeeBonus })
-        .then(employee => res.json({ status: "OK" }))
-        .catch(err => {
-            console.error(err);
-            res.status(500).json({ error: "Internal Server Error" });
-        });
-})
 
+    Employee.findOne({ staffNr })
+    .then(existingRecord => {
+      if (existingRecord) {
+        res.status(400).json({ error: "Record with the same staff No already exists" });
+      } else {
+        Employee.create({ staffNr,gender, averageIncome, dateOfJoin, dateOfBirth, averageMI, employeeBonus  })
+      .then(employee => res.json({ status: "OK" }))
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+        });
+      }
+    }).catch(err => {
+    res.status(500).json({ error: "Internal Server Error" });
+    });
+});
 app.get('/employee-information', async (req, res) => {
     try {
       const data = await Employee.find(); 
@@ -94,15 +115,22 @@ app.delete('/employee-information/:staffNr', async (req, res) => {
 app.post('/applicable-wages', (req, res) => {
   const { staffNr, gender, year , year23 ,year24, year25, year26 } = req.body;
 
-
-  Applicable.create({ staffNr, gender, year, year23 ,year24, year25, year26 })
-    .then(applicable => res.json({ status: "OK" }))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: "Internal Server Error" });
+    Applicable.findOne({ staffNr, gender })
+    .then(existingRecord => {
+      if (existingRecord) {
+        res.status(400).json({ error: "Record with the same staff No and year already exists" });
+      } else {
+        Probability.create({ staffNr, gender, year , year23 ,year24, year25, year26 })
+      .then(applicable => res.json({ status: "OK" }))
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+        });
+      }
+    }).catch(err => {
+    res.status(500).json({ error: "Internal Server Error" });
     });
 });
-
 
 app.get('/applicable-wages', async (req, res) => {
     try {
@@ -133,13 +161,20 @@ app.delete('/applicable-wages/:staffNr', async (req, res) => {
 
 app.post('/probability', (req, res) => {
   const { staffNr, gender, year , year23 ,year24, year25, year26 } = req.body;
-
-
-  Probability.create({ staffNr, gender, year, year23 ,year24, year25, year26 })
-    .then(probability => res.json({ status: "OK" }))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: "Internal Server Error" });
+    Probability.findOne({ staffNr, gender })
+    .then(existingRecord => {
+      if (existingRecord) {
+        res.status(400).json({ error: "Record with the same staff No and year already exists" });
+      } else {
+        Probability.create({ staffNr, gender, year , year23 ,year24, year25, year26 })
+      .then(probability => res.json({ status: "OK" }))
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+        });
+      }
+    }).catch(err => {
+    res.status(500).json({ error: "Internal Server Error" });
     });
 });
 
@@ -174,12 +209,20 @@ app.delete('/probability/:staffNr', async (req, res) => {
 app.post('/probability-staying', (req, res) => {
   const { staffNr, gender, year , year23 ,year24, year25, year26 } = req.body;
 
-
-  Staying.create({ staffNr, gender, year, year23 ,year24, year25, year26 })
-    .then(probability => res.json({ status: "OK" }))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: "Internal Server Error" });
+    Staying.findOne({ staffNr, gender })
+    .then(existingRecord => {
+      if (existingRecord) {
+        res.status(400).json({ error: "Record with the same staff No and year already exists" });
+      } else {
+      Staying.create({ staffNr, gender, year , year23 ,year24, year25, year26 })
+      .then(staying => res.json({ status: "OK" }))
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+        });
+      }
+    }).catch(err => {
+    res.status(500).json({ error: "Internal Server Error" });
     });
 });
 
@@ -215,15 +258,22 @@ app.delete('/probability-staying/:staffNr', async (req, res) => {
 app.post('/employer-mpf', (req, res) => {
   const { staffNr, gender, year , year23 ,year24, year25, year26 } = req.body;
 
-
-  Employermpf.create({ staffNr, gender, year, year23 ,year24, year25, year26 })
-    .then(employermpf => res.json({ status: "OK" }))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: "Internal Server Error" });
+    Employermpf.findOne({ staffNr, gender })
+      .then(existingRecord => {
+        if (existingRecord) {
+          res.status(400).json({ error: "Record with the same staff No and year already exists" });
+        } else {
+      LongPayment.create({  staffNr, gender, year , year23 ,year24, year25, year26 })
+      .then(employermpf => res.json({ status: "OK" }))
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+      });
+      }
+    }).catch(err => {
+    res.status(500).json({ error: "Internal Server Error" });
     });
 });
-
 
 app.get('/employer-mpf', async (req, res) => {
     try {
@@ -257,13 +307,21 @@ app.delete('/employer-mpf/:staffNr', async (req, res) => {
 app.post('/longservice-payment', (req, res) => {
   const { staffNr, gender,sumofLsp,lspOff, year , year23 ,year24, year25, year26 } = req.body;
 
-
-  LongPayment.create({ staffNr, gender,sumofLsp,lspOff, year, year23 ,year24, year25, year26 })
+  LongPayment.findOne({ staffNr, gender })
+    .then(existingRecord => {
+      if (existingRecord) {
+        res.status(400).json({ error: "Record with the same staff No and year already exists" });
+      } else {
+    LongPayment.create({ staffNr, gender,sumofLsp,lspOff, year, year23 ,year24, year25, year26 })
     .then(employermpf => res.json({ status: "OK" }))
     .catch(err => {
       console.error(err);
       res.status(500).json({ error: "Internal Server Error" });
-    });
+      });
+    }
+  }).catch(err => {
+    res.status(500).json({ error: "Internal Server Error" });
+  });
 });
 
 
@@ -296,15 +354,26 @@ app.delete('/longservice-payment/:staffNr', async (req, res) => {
 
 
 
-app.post('/projected-life' , (req, res) => {
-  const { gender,year,age,probofDying,numofSuv,numofDeaths,numofP,totalofP,expecofLife } = req.body;
+app.post('/projected-life', (req, res) => {
+  const { gender, year, age, probofDying, numofSuv, numofDeaths, numofP, totalofP, expecofLife } = req.body;
 
-  Projected.create({ gender,year,age,probofDying,numofSuv,numofDeaths,numofP,totalofP,expecofLife })
-      .then(projected => res.json({ status: "OK" }))
-      .catch(err => {
-          res.status(500).json({ error: "Internal Server Error" });
-      });
-})
+  Projected.findOne({ gender, year })
+    .then(existingRecord => {
+      if (existingRecord) {
+        res.status(400).json({ error: "Record with the same gender and year already exists" });
+      } else {
+        Projected.create({ gender, year, age, probofDying, numofSuv, numofDeaths, numofP, totalofP, expecofLife })
+          .then(projected => res.json({ status: "OK" }))
+          .catch(err => {
+            res.status(500).json({ error: "Internal Server Error" });
+          });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
 
 app.get('/projected-life', async (req, res) => {
   try {

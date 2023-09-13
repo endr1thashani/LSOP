@@ -11,7 +11,8 @@ const ModalAdd = ({closeModal}) => {
   const [numofDeaths , setnumofDeaths] = useState('')
   const [totalofP , settotalofP] = useState('')
   const [expecofLife , setexpecofLife] = useState('')
-
+  const [error , setError] = useState('')
+  const [success , setSuccess] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -20,9 +21,11 @@ const ModalAdd = ({closeModal}) => {
         gender,year,age,probofDying,numofSuv,numofDeaths,numofP,totalofP,expecofLife
       })
     .then(res => {
-        alert('Projected Life Created')
+        setSuccess('Projected Life Created')
         closeModal(false)
-    }).catch(err => console.log(err))
+    }).catch(err => 
+        setError('Projected life already exists')
+    )
 }
 
   return (
@@ -38,7 +41,8 @@ const ModalAdd = ({closeModal}) => {
 
           <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center w-full ml-[15px] md:ml-[80%]'>
             <h1>Add Projected Life</h1>
-
+            <p className='error'>{error}</p>
+            <p className='succ'>{success}</p>
             <div className="w-72 mt-[20px]">
                 <div className="relative h-10 w-full min-w-[200px]">
                     <input

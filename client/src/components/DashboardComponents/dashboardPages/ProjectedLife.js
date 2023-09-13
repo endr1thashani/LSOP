@@ -7,6 +7,8 @@ import SideBar from '../SideBar/SideBar'
 const ProjectedLife = () => {
   const [ modal , setModal ] = useState(false)
   const [ data , setData ] = useState([])
+  const [error , setError] = useState('')
+  const [success , setSuccess] = useState('')
   const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
@@ -21,9 +23,9 @@ const ProjectedLife = () => {
   const handleDelete = async (age) => {
     try {
       await axios.delete(`http://localhost:5000/projected-life/${age}`)
-      alert("Delete successfuly")
+      setSuccess("Delete successfuly")
     } catch (error) {
-      console.log(error)
+      setError('Something went wrong')
     }
   }
 
@@ -57,6 +59,8 @@ const ProjectedLife = () => {
                     </option>
                   ))}
                 </select>
+                <p className='error'>{error}</p>
+                <p className='succ'>{success}</p>
               <table className="min-w-full text-left text-sm font-light">
                 <thead className="border-b font-medium dark:border-neutral-500">
                   <tr>

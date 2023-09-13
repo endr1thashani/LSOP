@@ -6,23 +6,24 @@ const Register = () => {
     const [ name , setName ] = useState()
     const [ email , setEmail ] = useState()
     const [ password , setPassword ] = useState()
-
+    const [error, setError] = useState('');
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.post('http://localhost:5000/register' , {name , email , password} )
         .then(res => {
-            alert('User Created')
             navigate('/')
-        }).catch(err => console.log(err))
+        }).catch(err => 
+            setError('Email already exists')
+        )
     }
   return (
     <div className="main__container">
         <form onSubmit={handleSubmit} className='form__wrapper'>
 
                 <h1 className='mb-[40px] font-semibold text-2xl md:text-3xl'>Register</h1>
-
+                <p className="text-red-500 text-[12px] font-bold my-[5px]">{error}</p>
                 <div className="w-72">
                     <div className="relative h-10 w-full min-w-[200px]">
                         <input

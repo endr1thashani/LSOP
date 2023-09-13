@@ -7,7 +7,8 @@ const EmployeeInformation = () => {
 
   const [ modal , setModal ] = useState(false)
   const [ data , setData ] = useState([])
-
+  const [error , setError] = useState('')
+  const [success , setSuccess] = useState('')
   useEffect(()=>{
     axios.get('http://localhost:5000/employee-information')
     .then((response) => {
@@ -21,8 +22,9 @@ const EmployeeInformation = () => {
   const handleDelete = async (staffNr) => {
     try {
       await axios.delete(`http://localhost:5000/employee-information/${staffNr}`);
+      setSuccess('Deleted')
     } catch (error) {
-      console.error(error);
+      setError('Something went wrong');
     }
   };
   
@@ -39,7 +41,8 @@ const EmployeeInformation = () => {
         <div className="sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div className="overflow-x-auto md:overflow-x-hidden">
-
+              <p className='error'>{error}</p>
+              <p className='succ'>{success}</p>
               <table className="min-w-full text-left text-sm font-light">
                 <thead className="border-b font-medium dark:border-neutral-500">
                   <tr>

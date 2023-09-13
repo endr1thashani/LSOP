@@ -26,6 +26,8 @@ const yearsArr = [
 const LongservicePayment = () => {
   const [ modal , setModal ] = useState(false)
   const [ data , setData ] = useState([])
+  const [error , setError] = useState('')
+  const [success , setSuccess] = useState('')
 
   useEffect(() => {
     axios.get('http://localhost:5000/longservice-payment')
@@ -39,9 +41,9 @@ const LongservicePayment = () => {
   const handleDelete = async (staffNr) => {
     try {
       axios.delete(`http://localhost:5000/longservice-payment/${staffNr}`)
-      alert("Deleted")
+      setSuccess("Deleted")
     } catch (error) {
-      console.log(error)
+      setError('Something went wrong')
     }
   }
   return (
@@ -59,7 +61,8 @@ const LongservicePayment = () => {
         <div className="sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div className="overflow-x-auto md:overflow-x-hidden">
-
+              <p className='error'>{error}</p>
+              <p className='succ'>{success}</p>
               <table className="min-w-full text-left text-sm font-light">
                 <thead className="border-b font-medium dark:border-neutral-500">
                   <tr>

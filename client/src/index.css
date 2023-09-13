@@ -15,3 +15,11 @@
 .sidebar__icon-wrapper{
     @apply flex w-full h-[80px] items-center justify-start px-[15px] hover:bg-gray-700
 }
+
+.error{
+    @apply text-red-600 text-[12px] font-bold
+}
+
+.succ{
+    @apply text-green-600 text-[12px] font-bold
+}
